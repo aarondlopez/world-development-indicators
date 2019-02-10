@@ -1,1 +1,1 @@
-# Mini Project - C02 emissions and GDP Growth in Developing Countries
+# edX - UCSD Mini Project - C02 emissions and GDP Growth in Developing Countries
