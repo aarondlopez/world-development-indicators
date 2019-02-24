@@ -1,19 +1,19 @@
 # edX - UCSD Mini Project - C02 emissions and GDP Growth in Developing Countries
-In [3]:
+
 # Load libraries
 import pandas as pd
 import numpy as np
 import random
 import matplotlib.pyplot as plt
-In [4]:
+
 # Load data set of world development indicators
 data = pd.read_csv('./world-development-indicators/Indicators.csv')
 data.shape
-Out[4]:
+
 (5656458, 6)
-In [5]:
+
 data.head(10)
-Out[5]:
+
 CountryName	CountryCode	IndicatorName	IndicatorCode	Year	Value
 0	Arab World	ARB	Adolescent fertility rate (births per 1,000 wo...	SP.ADO.TFRT	1960	1.335609e+02
 1	Arab World	ARB	Age dependency ratio (% of working-age populat...	SP.POP.DPND	1960	8.779760e+01
@@ -25,63 +25,63 @@ CountryName	CountryCode	IndicatorName	IndicatorCode	Year	Value
 7	Arab World	ARB	CO2 emissions (kt)	EN.ATM.CO2E.KT	1960	5.956399e+04
 8	Arab World	ARB	CO2 emissions (metric tons per capita)	EN.ATM.CO2E.PC	1960	6.439635e-01
 9	Arab World	ARB	CO2 emissions from gaseous fuel consumption (%...	EN.ATM.CO2E.GF.ZS	1960	5.041292e+00
-In [6]:
+
 # How many years of data do we have?
 years = data['Year'].unique().tolist()
 len(years)
-Out[6]:
+
 56
-In [7]:
+
 # What is the range of years?
 min(years)," to ", max(years)
-Out[7]:
+
 (1960, ' to ', 2015)
-In [8]:
+
 # Unique countries in the list
 countries = data.CountryName.unique().tolist()
 len(countries)
-Out[8]:
+
 247
-In [9]:
+
 # Unique country codes matches the number of unique countries
 countryCodes = data.CountryCode.unique().tolist()
 len(countries)
-Out[9]:
+
 247
-In [10]:
+
 # creating a df just for unique countries and the corresponding country code
 countryIndex = pd.DataFrame(list(zip(countries, countryCodes)), columns=['country','countryCodes'])
 len(countryIndex)
-Out[10]:
+
 247
-In [11]:
+
 countryIndex.head()
-Out[11]:
+
 country	countryCodes
 0	Arab World	ARB
 1	Caribbean small states	CSS
 2	Central Europe and the Baltics	CEB
 3	East Asia & Pacific (all income levels)	EAS
 4	East Asia & Pacific (developing only)	EAP
-In [12]:
+
 # find country codes for developing nations (BRICs) nations,
 countryIndex.loc[countryIndex['country'].isin(['Brazil', 'Russian Federation', 'India', 'China'])]
-Out[12]:
+
 country	countryCodes
 59	Brazil	BRA
 73	China	CHN
 119	India	IND
 190	Russian Federation	RUS
-In [13]:
+
 # find country codes for developed nations
 countryIndex.loc[countryIndex['country'].isin(['United States', 'Japan', 'Germany', 'United Kingdom'])]
-Out[13]:
+
 country	countryCodes
 104	Germany	DEU
 128	Japan	JPN
 235	United Kingdom	GBR
 236	United States	USA
-In [17]:
+
 # Relationship between GPD and CO2 emissions in Brazil, Russian Federation, India, and China.
 countryList = ('BRA', 'RUS', 'IND', 'CHN', 'USA', 'GBR', 'JPN', 'DEU')
 
